@@ -1,5 +1,5 @@
 .calc-button {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 18px;
   font-weight: 400;
   border: none;
@@ -87,30 +87,117 @@
   background: linear-gradient(135deg, #004d85 0%, #00406f 100%);
 }
 
-/* Responsive design */
+/* Tablet and up - Larger buttons */
+@media (min-width: 768px) {
+  .calc-button {
+    font-size: 20px;
+    min-height: 70px;
+  }
+
+  .memory-btn {
+    font-size: 15px;
+    min-height: 45px;
+  }
+
+  .function-btn {
+    font-size: 18px;
+  }
+
+  .number-btn {
+    font-size: 24px;
+  }
+
+  .operator-btn {
+    font-size: 24px;
+  }
+
+  .equals-btn {
+    font-size: 24px;
+  }
+}
+
+/* Desktop - Even larger buttons */
+@media (min-width: 1024px) {
+  .calc-button {
+    font-size: 22px;
+    min-height: 75px;
+  }
+
+  .memory-btn {
+    font-size: 16px;
+    min-height: 48px;
+  }
+
+  .function-btn {
+    font-size: 19px;
+  }
+
+  .number-btn {
+    font-size: 26px;
+  }
+
+  .operator-btn {
+    font-size: 26px;
+  }
+
+  .equals-btn {
+    font-size: 26px;
+  }
+}
+
+/* Large Desktop - Maximum size buttons */
+@media (min-width: 1280px) {
+  .calc-button {
+    font-size: 24px;
+    min-height: 80px;
+  }
+
+  .memory-btn {
+    font-size: 17px;
+    min-height: 50px;
+  }
+
+  .function-btn {
+    font-size: 20px;
+  }
+
+  .number-btn {
+    font-size: 28px;
+  }
+
+  .operator-btn {
+    font-size: 28px;
+  }
+
+  .equals-btn {
+    font-size: 28px;
+  }
+}
+
+/* Mobile responsive - Smaller screens */
 @media (max-width: 480px) {
   .calc-button {
     font-size: 16px;
     min-height: 55px;
   }
-  
+
   .memory-btn {
     font-size: 13px;
     min-height: 38px;
   }
-  
+
   .function-btn {
     font-size: 15px;
   }
-  
+
   .number-btn {
     font-size: 18px;
   }
-  
+
   .operator-btn {
     font-size: 18px;
   }
-  
+
   .equals-btn {
     font-size: 18px;
   }
@@ -121,24 +208,24 @@
     font-size: 14px;
     min-height: 48px;
   }
-  
+
   .memory-btn {
     font-size: 12px;
     min-height: 34px;
   }
-  
+
   .function-btn {
     font-size: 13px;
   }
-  
+
   .number-btn {
     font-size: 16px;
   }
-  
+
   .operator-btn {
     font-size: 16px;
   }
-  
+
   .equals-btn {
     font-size: 16px;
   }

@@ -1,5 +1,5 @@
-import './ButtonPanel.css';
-import Button from './Button';
+import "./ButtonPanel.css";
+import Button from "./Button";
 
 function ButtonPanel({
   onNumber,
@@ -44,7 +44,11 @@ function ButtonPanel({
         <Button onClick={onReciprocal} className="function-btn" label="1/x" />
         <Button onClick={onSquare} className="function-btn" label="x²" />
         <Button onClick={onSquareRoot} className="function-btn" label="√x" />
-        <Button onClick={() => onOperation('÷')} className="operator-btn" label="÷" />
+        <Button
+          onClick={() => onOperation("÷")}
+          className="operator-btn"
+          label="÷"
+        />
       </div>
 
       {/* Row 3: Numbers 7-9 and multiply */}
@@ -52,7 +56,11 @@ function ButtonPanel({
         <Button onClick={() => onNumber(7)} className="number-btn" label="7" />
         <Button onClick={() => onNumber(8)} className="number-btn" label="8" />
         <Button onClick={() => onNumber(9)} className="number-btn" label="9" />
-        <Button onClick={() => onOperation('×')} className="operator-btn" label="×" />
+        <Button
+          onClick={() => onOperation("×")}
+          className="operator-btn"
+          label="×"
+        />
       </div>
 
       {/* Row 4: Numbers 4-6 and minus */}
@@ -60,7 +68,11 @@ function ButtonPanel({
         <Button onClick={() => onNumber(4)} className="number-btn" label="4" />
         <Button onClick={() => onNumber(5)} className="number-btn" label="5" />
         <Button onClick={() => onNumber(6)} className="number-btn" label="6" />
-        <Button onClick={() => onOperation('-')} className="operator-btn" label="-" />
+        <Button
+          onClick={() => onOperation("-")}
+          className="operator-btn"
+          label="-"
+        />
       </div>
 
       {/* Row 5: Numbers 1-3 and plus */}
@@ -68,7 +80,11 @@ function ButtonPanel({
         <Button onClick={() => onNumber(1)} className="number-btn" label="1" />
         <Button onClick={() => onNumber(2)} className="number-btn" label="2" />
         <Button onClick={() => onNumber(3)} className="number-btn" label="3" />
-        <Button onClick={() => onOperation('+')} className="operator-btn" label="+" />
+        <Button
+          onClick={() => onOperation("+")}
+          className="operator-btn"
+          label="+"
+        />
       </div>
 
       {/* Row 6: Sign, 0, decimal, equals */}

@@ -1,49 +1,52 @@
-import { useState } from 'react';
-import './App.css';
-import Display from './components/Display';
-import ButtonPanel from './components/ButtonPanel';
+import { useState } from "react";
+import "./App.css";
+import Display from "./components/Display";
+import ButtonPanel from "./components/ButtonPanel";
+import Sidebar from "./components/Sidebar";
 
 function App() {
-  const [display, setDisplay] = useState('0');
+  const [display, setDisplay] = useState("0");
   const [previousValue, setPreviousValue] = useState(null);
   const [operation, setOperation] = useState(null);
   const [waitingForOperand, setWaitingForOperand] = useState(false);
   const [memory, setMemory] = useState(0);
+  const [history, setHistory] = useState([]);
+  const [memoryList, setMemoryList] = useState([]);
 
   const handleNumber = (num) => {
     if (waitingForOperand) {
       setDisplay(String(num));
       setWaitingForOperand(false);
     } else {
-      setDisplay(display === '0' ? String(num) : display + num);
+      setDisplay(display === "0" ? String(num) : display + num);
     }
   };
 
   const handleDecimal = () => {
     if (waitingForOperand) {
-      setDisplay('0.');
+      setDisplay("0.");
       setWaitingForOperand(false);
-    } else if (display.indexOf('.') === -1) {
-      setDisplay(display + '.');
+    } else if (display.indexOf(".") === -1) {
+      setDisplay(display + ".");
     }
   };
 
   const handleClear = () => {
-    setDisplay('0');
+    setDisplay("0");
     setPreviousValue(null);
     setOperation(null);
     setWaitingForOperand(false);
   };
 
   const handleClearEntry = () => {
-    setDisplay('0');
+    setDisplay("0");
     setWaitingForOperand(false);
   };
 
   const handleBackspace = () => {
     if (!waitingForOperand) {
       const newDisplay = display.slice(0, -1);
-      setDisplay(newDisplay === '' || newDisplay === '-' ? '0' : newDisplay);
+      setDisplay(newDisplay === "" || newDisplay === "-" ? "0" : newDisplay);
     }
   };
 
@@ -62,24 +65,24 @@ function App() {
       let newValue = currentValue;
 
       switch (operation) {
-        case '+':
+        case "+":
           newValue = currentValue + inputValue;
           break;
-        case '-':
+        case "-":
           newValue = currentValue - inputValue;
           break;
-        case '×':
+        case "×":
           newValue = currentValue * inputValue;
           break;
-        case '÷':
-          newValue = inputValue !== 0 ? currentValue / inputValue : 'Error';
+        case "÷":
+          newValue = inputValue !== 0 ? currentValue / inputValue : "Error";
           break;
         default:
           break;
       }
 
-      if (newValue === 'Error') {
-        setDisplay('Cannot divide by zero');
+      if (newValue === "Error") {
+        setDisplay("Cannot divide by zero");
         setPreviousValue(null);
         setOperation(null);
         setWaitingForOperand(true);
@@ -101,29 +104,33 @@ function App() {
       let result = previousValue;
 
       switch (operation) {
-        case '+':
+        case "+":
           result = previousValue + inputValue;
           break;
-        case '-':
+        case "-":
           result = previousValue - inputValue;
           break;
-        case '×':
+        case "×":
           result = previousValue * inputValue;
           break;
-        case '÷':
-          result = inputValue !== 0 ? previousValue / inputValue : 'Error';
+        case "÷":
+          result = inputValue !== 0 ? previousValue / inputValue : "Error";
           break;
         default:
           break;
       }
 
-      if (result === 'Error') {
-        setDisplay('Cannot divide by zero');
+      if (result === "Error") {
+        setDisplay("Cannot divide by zero");
         setPreviousValue(null);
         setOperation(null);
         setWaitingForOperand(true);
         return;
       }
+
+      // Add to history
+      const expression = `${previousValue} ${operation} ${inputValue} =`;
+      setHistory([{ expression, result: String(result) }, ...history]);
 
       setDisplay(String(result));
       setPreviousValue(null);
@@ -149,7 +156,7 @@ function App() {
     if (value >= 0) {
       setDisplay(String(Math.sqrt(value)));
     } else {
-      setDisplay('Invalid input');
+      setDisplay("Invalid input");
     }
     setWaitingForOperand(true);
   };
@@ -165,64 +172,126 @@ function App() {
     if (value !== 0) {
       setDisplay(String(1 / value));
     } else {
-      setDisplay('Cannot divide by zero');
+      setDisplay("Cannot divide by zero");
     }
     setWaitingForOperand(true);
   };
 
   const handleMemoryClear = () => {
     setMemory(0);
+    setMemoryList([]);
   };
 
   const handleMemoryRecall = () => {
-    setDisplay(String(memory));
+    if (memoryList.length > 0) {
+      setDisplay(String(memoryList[0].value));
+    } else {
+      setDisplay(String(memory));
+    }
     setWaitingForOperand(true);
   };
 
   const handleMemoryAdd = () => {
-    setMemory(memory + parseFloat(display));
+    const currentValue = parseFloat(display);
+    const newMemoryValue = memory + currentValue;
+    setMemory(newMemoryValue);
+
+    // Update or add to memory list
+    if (memoryList.length > 0) {
+      const updatedList = [...memoryList];
+      updatedList[0] = { value: newMemoryValue };
+      setMemoryList(updatedList);
+    } else {
+      setMemoryList([{ value: newMemoryValue }]);
+    }
+
     setWaitingForOperand(true);
   };
 
   const handleMemorySubtract = () => {
-    setMemory(memory - parseFloat(display));
+    const currentValue = parseFloat(display);
+    const newMemoryValue = memory - currentValue;
+    setMemory(newMemoryValue);
+
+    // Update or add to memory list
+    if (memoryList.length > 0) {
+      const updatedList = [...memoryList];
+      updatedList[0] = { value: newMemoryValue };
+      setMemoryList(updatedList);
+    } else {
+      setMemoryList([{ value: newMemoryValue }]);
+    }
+
     setWaitingForOperand(true);
   };
 
   const handleMemoryStore = () => {
-    setMemory(parseFloat(display));
+    const currentValue = parseFloat(display);
+    setMemory(currentValue);
+
+    // Add to beginning of memory list
+    setMemoryList([{ value: currentValue }, ...memoryList]);
+
+    setWaitingForOperand(true);
+  };
+
+  const handleHistoryClick = (value) => {
+    setDisplay(value);
+    setWaitingForOperand(true);
+  };
+
+  const handleMemoryClearItem = (index) => {
+    const updatedList = memoryList.filter((_, i) => i !== index);
+    setMemoryList(updatedList);
+
+    if (updatedList.length === 0) {
+      setMemory(0);
+    }
+  };
+
+  const handleMemoryRecallItem = (value) => {
+    setDisplay(String(value));
     setWaitingForOperand(true);
   };
 
   return (
-    <div className="calculator">
-      <div className="calculator-header">
-        <h1>Calculator</h1>
+    <div className="app-container">
+      <div className="calculator">
+        <div className="calculator-header">
+          <h1>Calculator</h1>
+        </div>
+        <Display
+          value={display}
+          operation={operation}
+          previousValue={previousValue}
+          hasMemory={memory !== 0 || memoryList.length > 0}
+        />
+        <ButtonPanel
+          onNumber={handleNumber}
+          onDecimal={handleDecimal}
+          onClear={handleClear}
+          onClearEntry={handleClearEntry}
+          onBackspace={handleBackspace}
+          onSign={handleSign}
+          onOperation={performOperation}
+          onEquals={handleEquals}
+          onPercentage={handlePercentage}
+          onSquareRoot={handleSquareRoot}
+          onSquare={handleSquare}
+          onReciprocal={handleReciprocal}
+          onMemoryClear={handleMemoryClear}
+          onMemoryRecall={handleMemoryRecall}
+          onMemoryAdd={handleMemoryAdd}
+          onMemorySubtract={handleMemorySubtract}
+          onMemoryStore={handleMemoryStore}
+        />
       </div>
-      <Display 
-        value={display} 
-        operation={operation}
-        previousValue={previousValue}
-        hasMemory={memory !== 0}
-      />
-      <ButtonPanel
-        onNumber={handleNumber}
-        onDecimal={handleDecimal}
-        onClear={handleClear}
-        onClearEntry={handleClearEntry}
-        onBackspace={handleBackspace}
-        onSign={handleSign}
-        onOperation={performOperation}
-        onEquals={handleEquals}
-        onPercentage={handlePercentage}
-        onSquareRoot={handleSquareRoot}
-        onSquare={handleSquare}
-        onReciprocal={handleReciprocal}
-        onMemoryClear={handleMemoryClear}
-        onMemoryRecall={handleMemoryRecall}
-        onMemoryAdd={handleMemoryAdd}
-        onMemorySubtract={handleMemorySubtract}
-        onMemoryStore={handleMemoryStore}
+      <Sidebar
+        history={history}
+        memoryList={memoryList}
+        onHistoryClick={handleHistoryClick}
+        onMemoryClear={handleMemoryClearItem}
+        onMemoryRecall={handleMemoryRecallItem}
       />
     </div>
   );

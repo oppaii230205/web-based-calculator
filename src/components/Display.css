@@ -38,12 +38,72 @@
   line-height: 1.2;
 }
 
-/* Responsive design */
+/* Tablet and up - Larger display */
+@media (min-width: 768px) {
+  .display-container {
+    min-height: 140px;
+    padding: 24px;
+  }
+
+  .display {
+    font-size: 56px;
+  }
+
+  .expression {
+    font-size: 16px;
+  }
+
+  .memory-indicator {
+    font-size: 13px;
+  }
+}
+
+/* Desktop - Even larger */
+@media (min-width: 1024px) {
+  .display-container {
+    min-height: 150px;
+    padding: 28px;
+  }
+
+  .display {
+    font-size: 60px;
+  }
+
+  .expression {
+    font-size: 17px;
+  }
+
+  .memory-indicator {
+    font-size: 14px;
+  }
+}
+
+/* Large Desktop - Maximum size */
+@media (min-width: 1280px) {
+  .display-container {
+    min-height: 160px;
+    padding: 32px;
+  }
+
+  .display {
+    font-size: 64px;
+  }
+
+  .expression {
+    font-size: 18px;
+  }
+
+  .memory-indicator {
+    font-size: 15px;
+  }
+}
+
+/* Mobile responsive - Smaller screens */
 @media (max-width: 480px) {
   .display {
     font-size: 40px;
   }
-  
+
   .expression {
     font-size: 13px;
   }
@@ -54,15 +114,15 @@
     min-height: 100px;
     padding: 15px;
   }
-  
+
   .display {
     font-size: 32px;
   }
-  
+
   .expression {
     font-size: 12px;
   }
-  
+
   .memory-indicator {
     font-size: 11px;
     top: 8px;
