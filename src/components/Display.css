@@ -1,0 +1,71 @@
+.display-container {
+  padding: 20px;
+  background: rgba(249, 249, 249, 0.8);
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.memory-indicator {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  font-size: 12px;
+  color: #666;
+  font-weight: 600;
+}
+
+.expression {
+  color: #5f5f5f;
+  font-size: 14px;
+  text-align: right;
+  margin-bottom: 4px;
+  min-height: 20px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.display {
+  color: #000;
+  font-size: 48px;
+  font-weight: 600;
+  text-align: right;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.2;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .display {
+    font-size: 40px;
+  }
+  
+  .expression {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .display-container {
+    min-height: 100px;
+    padding: 15px;
+  }
+  
+  .display {
+    font-size: 32px;
+  }
+  
+  .expression {
+    font-size: 12px;
+  }
+  
+  .memory-indicator {
+    font-size: 11px;
+    top: 8px;
+    left: 15px;
+  }
+}

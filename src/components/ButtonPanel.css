@@ -1,0 +1,38 @@
+.button-panel {
+  padding: 4px;
+  background: rgba(243, 243, 243, 0.95);
+}
+
+.button-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  margin-bottom: 2px;
+}
+
+.memory-row {
+  grid-template-columns: repeat(5, 1fr);
+  margin-bottom: 8px;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .button-panel {
+    padding: 3px;
+  }
+  
+  .button-row {
+    gap: 1px;
+    margin-bottom: 1px;
+  }
+  
+  .memory-row {
+    margin-bottom: 6px;
+  }
+}
+
+@media (max-width: 360px) {
+  .button-panel {
+    padding: 2px;
+  }
+}
