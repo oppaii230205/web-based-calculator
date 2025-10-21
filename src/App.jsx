@@ -258,7 +258,12 @@ function App() {
     <div className="app-container">
       <div className="calculator">
         <div className="calculator-header">
-          <h1>Calculator</h1>
+          <div className="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <h1>Standard</h1>
         </div>
         <Display
           value={display}

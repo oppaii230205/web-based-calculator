@@ -1,131 +1,54 @@
 .display-container {
-  padding: 20px;
-  background: rgba(249, 249, 249, 0.8);
-  min-height: 120px;
+  padding: clamp(16px, 2.5vh, 24px) clamp(20px, 3vw, 32px);
+  background: transparent;
+  min-height: clamp(100px, 18vh, 140px);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   position: relative;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .memory-indicator {
   position: absolute;
-  top: 10px;
-  left: 20px;
-  font-size: 12px;
-  color: #666;
-  font-weight: 600;
+  top: clamp(8px, 1.5vh, 12px);
+  left: clamp(16px, 2.5vw, 20px);
+  font-size: clamp(10px, 1.5vw, 12px);
+  color: #323130;
+  font-weight: 400;
 }
 
 .expression {
-  color: #5f5f5f;
-  font-size: 14px;
+  color: #605e5c;
+  font-size: clamp(11px, 1.8vw, 14px);
   text-align: right;
-  margin-bottom: 4px;
-  min-height: 20px;
+  margin-bottom: clamp(2px, 0.5vh, 4px);
+  min-height: clamp(16px, 2.5vh, 20px);
   word-wrap: break-word;
   overflow-wrap: break-word;
+  font-weight: 400;
 }
 
 .display {
-  color: #000;
-  font-size: 48px;
+  color: #323130;
+  font-size: clamp(32px, 6vw, 56px);
   font-weight: 600;
   text-align: right;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  line-height: 1.2;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
-/* Tablet and up - Larger display */
+/* Fine-tune for larger screens */
 @media (min-width: 768px) {
-  .display-container {
-    min-height: 140px;
-    padding: 24px;
-  }
-
   .display {
-    font-size: 56px;
-  }
-
-  .expression {
-    font-size: 16px;
-  }
-
-  .memory-indicator {
-    font-size: 13px;
+    font-size: clamp(48px, 5vw, 64px);
   }
 }
 
-/* Desktop - Even larger */
-@media (min-width: 1024px) {
-  .display-container {
-    min-height: 150px;
-    padding: 28px;
-  }
-
+@media (min-width: 1920px) {
   .display {
-    font-size: 60px;
-  }
-
-  .expression {
-    font-size: 17px;
-  }
-
-  .memory-indicator {
-    font-size: 14px;
-  }
-}
-
-/* Large Desktop - Maximum size */
-@media (min-width: 1280px) {
-  .display-container {
-    min-height: 160px;
-    padding: 32px;
-  }
-
-  .display {
-    font-size: 64px;
-  }
-
-  .expression {
-    font-size: 18px;
-  }
-
-  .memory-indicator {
-    font-size: 15px;
-  }
-}
-
-/* Mobile responsive - Smaller screens */
-@media (max-width: 480px) {
-  .display {
-    font-size: 40px;
-  }
-
-  .expression {
-    font-size: 13px;
-  }
-}
-
-@media (max-width: 360px) {
-  .display-container {
-    min-height: 100px;
-    padding: 15px;
-  }
-
-  .display {
-    font-size: 32px;
-  }
-
-  .expression {
-    font-size: 12px;
-  }
-
-  .memory-indicator {
-    font-size: 11px;
-    top: 8px;
-    left: 15px;
+    font-size: clamp(56px, 4.5vw, 72px);
   }
 }

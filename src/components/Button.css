@@ -1,232 +1,136 @@
 .calc-button {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 18px;
+  font-size: clamp(16px, 2.2vw, 24px);
   font-weight: 400;
-  border: none;
+  border: 1px solid transparent;
   cursor: pointer;
   transition: all 0.1s ease;
   outline: none;
-  min-height: 60px;
+  min-height: clamp(48px, 8vh, 76px);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
+  border-radius: clamp(3px, 0.5vw, 4px);
+  background-clip: padding-box;
 }
 
 .calc-button:hover {
-  filter: brightness(0.95);
+  background-color: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.05);
 }
 
 .calc-button:active {
-  filter: brightness(0.85);
+  background-color: rgba(0, 0, 0, 0.06);
   transform: scale(0.98);
 }
 
-/* Memory buttons - smaller, grey */
+/* Memory buttons - smaller, subtle */
 .memory-btn {
-  background: rgba(225, 225, 225, 0.8);
-  color: #000;
-  font-size: 14px;
-  min-height: 40px;
+  background: transparent;
+  color: #323130;
+  font-size: clamp(12px, 1.6vw, 16px);
+  min-height: clamp(34px, 5vh, 46px);
   font-weight: 400;
+  border: 1px solid transparent;
 }
 
 .memory-btn:hover {
-  background: rgba(215, 215, 215, 0.9);
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.06);
 }
 
-/* Function buttons - light grey */
+.memory-btn:active {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+/* Function buttons - light background */
 .function-btn {
-  background: rgba(250, 250, 250, 0.9);
-  color: #000;
-  font-size: 16px;
+  background: rgba(250, 249, 248, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: #323130;
+  font-size: clamp(15px, 2vw, 20px);
   font-weight: 400;
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .function-btn:hover {
-  background: rgba(240, 240, 240, 0.95);
+  background: rgba(243, 242, 241, 0.7);
+  border-color: rgba(0, 0, 0, 0.1);
 }
 
-/* Number buttons - white */
+.function-btn:active {
+  background: rgba(237, 235, 233, 0.8);
+}
+
+/* Number buttons - white background */
 .number-btn {
-  background: rgba(255, 255, 255, 0.95);
-  color: #000;
-  font-size: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: #323130;
+  font-size: clamp(18px, 2.5vw, 28px);
   font-weight: 600;
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .number-btn:hover {
-  background: rgba(245, 245, 245, 1);
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 0, 0, 0.1);
 }
 
-/* Operator buttons - light grey */
+.number-btn:active {
+  background: rgba(248, 248, 248, 0.9);
+}
+
+/* Operator buttons - light background */
 .operator-btn {
-  background: rgba(250, 250, 250, 0.9);
-  color: #000;
-  font-size: 20px;
+  background: rgba(250, 249, 248, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: #323130;
+  font-size: clamp(18px, 2.5vw, 28px);
   font-weight: 400;
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .operator-btn:hover {
-  background: rgba(240, 240, 240, 0.95);
+  background: rgba(243, 242, 241, 0.7);
+  border-color: rgba(0, 0, 0, 0.1);
 }
 
-/* Equals button - accent blue */
+.operator-btn:active {
+  background: rgba(237, 235, 233, 0.8);
+}
+
+/* Equals button - Windows 11 blue accent */
 .equals-btn {
-  background: linear-gradient(135deg, #0067c0 0%, #005a9e 100%);
-  color: #fff;
-  font-size: 20px;
+  background: rgba(0, 103, 192, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: #ffffff;
+  font-size: clamp(18px, 2.5vw, 28px);
   font-weight: 600;
+  border: 1px solid rgba(0, 103, 192, 0.5);
 }
 
 .equals-btn:hover {
-  background: linear-gradient(135deg, #005a9e 0%, #004d85 100%);
+  background: rgba(0, 90, 158, 0.95);
+  border-color: rgba(0, 90, 158, 0.6);
 }
 
 .equals-btn:active {
-  background: linear-gradient(135deg, #004d85 0%, #00406f 100%);
+  background: rgba(0, 77, 133, 1);
+  border-color: rgba(0, 77, 133, 0.8);
 }
 
-/* Tablet and up - Larger buttons */
-@media (min-width: 768px) {
-  .calc-button {
-    font-size: 20px;
-    min-height: 70px;
-  }
-
-  .memory-btn {
-    font-size: 15px;
-    min-height: 45px;
-  }
-
-  .function-btn {
-    font-size: 18px;
-  }
-
-  .number-btn {
-    font-size: 24px;
-  }
-
-  .operator-btn {
-    font-size: 24px;
-  }
-
-  .equals-btn {
-    font-size: 24px;
-  }
-}
-
-/* Desktop - Even larger buttons */
-@media (min-width: 1024px) {
-  .calc-button {
-    font-size: 22px;
-    min-height: 75px;
-  }
-
-  .memory-btn {
-    font-size: 16px;
-    min-height: 48px;
-  }
-
-  .function-btn {
-    font-size: 19px;
-  }
-
-  .number-btn {
-    font-size: 26px;
-  }
-
-  .operator-btn {
-    font-size: 26px;
-  }
-
-  .equals-btn {
-    font-size: 26px;
-  }
-}
-
-/* Large Desktop - Maximum size buttons */
-@media (min-width: 1280px) {
-  .calc-button {
-    font-size: 24px;
-    min-height: 80px;
-  }
-
-  .memory-btn {
-    font-size: 17px;
-    min-height: 50px;
-  }
-
-  .function-btn {
-    font-size: 20px;
-  }
-
-  .number-btn {
-    font-size: 28px;
-  }
-
-  .operator-btn {
-    font-size: 28px;
-  }
-
-  .equals-btn {
-    font-size: 28px;
-  }
-}
-
-/* Mobile responsive - Smaller screens */
-@media (max-width: 480px) {
-  .calc-button {
-    font-size: 16px;
-    min-height: 55px;
-  }
-
-  .memory-btn {
-    font-size: 13px;
-    min-height: 38px;
-  }
-
-  .function-btn {
-    font-size: 15px;
-  }
-
-  .number-btn {
-    font-size: 18px;
-  }
-
-  .operator-btn {
-    font-size: 18px;
-  }
-
-  .equals-btn {
-    font-size: 18px;
-  }
-}
-
+/* Mobile responsive - Very small screens */
 @media (max-width: 360px) {
   .calc-button {
-    font-size: 14px;
-    min-height: 48px;
+    min-height: clamp(44px, 7vh, 48px);
   }
 
   .memory-btn {
-    font-size: 12px;
-    min-height: 34px;
-  }
-
-  .function-btn {
-    font-size: 13px;
-  }
-
-  .number-btn {
-    font-size: 16px;
-  }
-
-  .operator-btn {
-    font-size: 16px;
-  }
-
-  .equals-btn {
-    font-size: 16px;
+    min-height: clamp(32px, 4.5vh, 36px);
   }
 }
